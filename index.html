@@ -713,11 +713,12 @@
       </div>
 
       <!-- Whatsapp Reservasi -->
-      <section class="m-0 p-0 mb-4" id="kehadiran">
+      <section class="m-0 p-0 mb-4">
         <div class="container">
           <div class="card-body border rounded-4 shadow p-3">
             <h1 class="font-esthetic text-center mb-3" style="font-size: 3rem">Konfirmasi Kehadiran</h1>
-            <!-- <div class="mb-1" id="balasan"></div> -->
+
+            <div class="mb-1" id="balasan"></div>
 
             <div class="mb-3">
               <label for="form-name" class="form-label">Nama</label>
@@ -735,7 +736,7 @@
                 <option value="0" selected>Konfirmasi Kehadiran</option>
                 <option value="1">Iya, Saya akan datang</option>
                 <option value="2">Saya Masih Ragu</option>
-                <option value="2">Maaf, Saya Tidak Bisa Datang</option>
+                <option value="3">Maaf, Saya Tidak Bisa Datang</option>
               </select>
             </div>
 
@@ -947,10 +948,30 @@
         const inputjumlah = document.querySelector('#form-jumlah-wa').value;
         const inputkehadiran = document.querySelector('#form-presence-wa').value;
         
-        if(inputnama != "" && inputjumlah != "" && inputkehadiran != ""){
-          const checkout_whatsapp = waLink + '&text=' + 'Hai, Ade Juju & Putri, saya ' + inputnama + ' ingin menginformasikan kehadiran di acara resepsi pernikahan pada Hari Senin 22 April 2024. ' + inputkehadiran + ' bersama ' + inputjumlah + 'orang.' + 'Terimakasih.';
+        function valueChecker() {
+          const val1 = "Iya, Saya akan datang bersama " + inputjumlah + " orang.";
+          const val2 = "Saya masih ragu untuk datang ke acara.";
+          const val3 = "Maaf, Saya tidak bisa datang ke acara."
+
+          if(inputkehadiran === "1") {
+            return val1;
+          } else if(inputkehadiran === "2") {
+            return val2;
+          } else if(inputkehadiran === "3") {
+            return val3;
+          } else {
+            alert('Silahkan Konfirmasi Kehadiran!');
+            return;
+          }
+        }
+
+        if(inputnama != "" && inputkehadiran != ""){
+          const checkout_whatsapp = waLink + '&text=' + 'Hai, Ade Juju dan Putri, saya ' + inputnama + ' ingin menginformasikan kehadiran di acara resepsi pernikahan pada Hari Senin 22 April 2024. ' + valueChecker() + 'Terimakasih.';
           
           window.open(checkout_whatsapp,'_blank');
+        } else {
+          alert('Form not completed!');
+          return;
         }
   }
   </script>
