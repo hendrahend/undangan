@@ -712,6 +712,42 @@
         </div>
       </div>
 
+      <!-- Whatsapp Reservasi -->
+      <section class="m-0 p-0 mb-4" id="kehadiran">
+        <div class="container">
+          <div class="card-body border rounded-4 shadow p-3">
+            <h1 class="font-esthetic text-center mb-3" style="font-size: 3rem">Konfirmasi Kehadiran</h1>
+            <!-- <div class="mb-1" id="balasan"></div> -->
+
+            <div class="mb-3">
+              <label for="form-name" class="form-label">Nama</label>
+              <input type="text" class="form-control shadow-sm" id="form-name-wa" placeholder="Isikan Nama Anda" />
+            </div>
+
+            <div class="mb-3">
+              <label for="form-comment" class="form-label">Jumlah</label>
+              <input class="form-control shadow-sm" id="form-jumlah-wa" placeholder="Isikan Jumlah Tamu"></input>
+            </div>
+
+            <div class="mb-3">
+              <label for="form-presence" class="form-label" id="label-kehadiran-wa">Kehadiran</label>
+              <select class="form-select shadow-sm" id="form-presence-wa">
+                <option value="0" selected>Konfirmasi Kehadiran</option>
+                <option value="1">Iya, Saya akan datang</option>
+                <option value="2">Saya Masih Ragu</option>
+                <option value="2">Maaf, Saya Tidak Bisa Datang</option>
+              </select>
+            </div>
+
+            <div class="d-grid">
+              <button class="btn btn-success btn-sm rounded-3 shadow m-1" onclick="whatsapp()">
+                <i class="fa-brands fa-whatsapp me-1"></i>Send
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Comments -->
       <section class="m-0 p-0" id="ucapan">
         <div class="container">
@@ -904,5 +940,19 @@
       integrity="sha256-mvTaORw+RTgKnX6ZHT4P5Sc9DNP2TBpSGII7F3sT8iE="
       crossorigin="anonymous"
     ></script>
+    <script type="text/javascript">
+      function whatsapp() { 
+        let waLink = "https://api.whatsapp.com/send?phone=6285723832342";
+        const inputnama = document.querySelector('#form-name-wa').value;
+        const inputjumlah = document.querySelector('#form-jumlah-wa').value;
+        const inputkehadiran = document.querySelector('#form-presence-wa').value;
+        
+        if(inputnama != "" && inputjumlah != "" && inputkehadiran != ""){
+          const checkout_whatsapp = waLink + '&text=' + 'Hai, Ade Juju & Putri, saya ' + inputnama + ' ingin menginformasikan kehadiran di acara resepsi pernikahan pada Hari Senin 22 April 2024. ' + inputkehadiran + ' bersama ' + inputjumlah + 'orang.' + 'Terimakasih.';
+          
+          window.open(checkout_whatsapp,'_blank');
+        }
+  }
+  </script>
   </body>
 </html>
