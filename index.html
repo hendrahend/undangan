@@ -742,7 +742,10 @@
 
             <div class="d-grid">
               <button class="btn btn-success btn-sm rounded-3 shadow m-1" onclick="whatsapp()">
-                <i class="fa-brands fa-whatsapp me-1"></i>Send
+                <i class="fa-brands fa-whatsapp me-1"></i>Send to Ade Juju
+              </button>
+              <button class="btn btn-success btn-sm rounded-3 shadow m-1" onclick="whatsapp2()">
+                <i class="fa-brands fa-whatsapp me-1"></i>Send to Putri
               </button>
             </div>
           </div>
@@ -944,6 +947,38 @@
     <script type="text/javascript">
       function whatsapp() { 
         let waLink = "https://api.whatsapp.com/send?phone=6281214195931";
+        const inputnama = document.querySelector('#form-name-wa').value;
+        const inputjumlah = document.querySelector('#form-jumlah-wa').value;
+        const inputkehadiran = document.querySelector('#form-presence-wa').value;
+        
+        function valueChecker() {
+          const val1 = "Iya, Saya akan datang bersama " + inputjumlah + " orang.";
+          const val2 = "Saya masih ragu untuk datang ke acara.";
+          const val3 = "Maaf, Saya tidak bisa datang ke acara."
+
+          if(inputkehadiran === "1") {
+            return val1;
+          } else if(inputkehadiran === "2") {
+            return val2;
+          } else if(inputkehadiran === "3") {
+            return val3;
+          } else {
+            alert('Silahkan Konfirmasi Kehadiran!');
+            return;
+          }
+        }
+
+        if(inputnama != "" && inputkehadiran != ""){
+          const checkout_whatsapp = waLink + '&text=' + 'Hai, Ade Juju dan Putri, saya ' + inputnama + ' ingin menginformasikan kehadiran di acara resepsi pernikahan pada Hari Senin 22 April 2024. ' + valueChecker() + 'Terimakasih.';
+          
+          window.open(checkout_whatsapp,'_blank');
+        } else {
+          alert('Form not completed!');
+          return;
+        }
+  }
+      function whatsapp2() { 
+        let waLink = "https://api.whatsapp.com/send?phone=6287743297578";
         const inputnama = document.querySelector('#form-name-wa').value;
         const inputjumlah = document.querySelector('#form-jumlah-wa').value;
         const inputkehadiran = document.querySelector('#form-presence-wa').value;
